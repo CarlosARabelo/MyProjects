@@ -1,0 +1,73 @@
+Instruções de uso do programa MoveFiles
+
+1 - Generalidades:
+
+A finalidade do programa é mover arquivo de um diretório para outro, conforme a especificação anexa.
+O programa Seleciona arquivos em um diretório e os copia para um outro diretório, estes diretórios
+devem estar especificados no arquivo de configuração.
+
+O programa foi completamente desenvolvido em C++ 14 ANSI e não usa bibliotecas externas.
+Para o desenvolvimento do programas foi usada a IDE Eclipse C++ Versão Oxigen 3A.
+O makefile encontra-se no diretório Debug (que foi o tipo de executável desenvolvido) e foi
+configurado o compilador GCC C++.
+A maneira mais fácil de compilar o programa é deszipar o arquivo em um workspace para C++ do 
+Eclipse e solicitar a compilação a partir desta IDE. Pode-se também compilar a partir da 
+linha de comando. 
+
+O programa foi projetado para funcionar como um servico. O programa fica no ar todo o tempo
+e executa suas funções em um lapso de tempo pré determinado.
+O funcionamento do programa deve ser configurado a partir de um arquivo de nome config.txt. 
+Este arquivo deve ser colocado no diretório de onde o programa será executado. Este Arquivo
+rege todo o fucionamento do programa.
+
+2 - Criando Arquivo de configuração:
+
+São os seguintes os itens que devem ser especificados no arquivo de configuração: 
+
+
+Source=      Indica o diretório de onde os arquivos deverão ser copiados.
+Destination= Indica o diretório para onde os arquivos deverão ser copiados.
+WildCard=    Indica o coringa que deve ser usado para selecionar os arquivos de origem.
+Lapse=       Indica o lapso de tempo em segundos que deve ocorrer entre as execuções do programa.
+Mode=        Indica o modo de operação que pode ser:
+	
+                 Name   	copia os arquivos selecionando-os pelo nome, este modo combina com os coringas.   
+                
+                 Newest 	Somente o mais novo arquivo é copiado. Caso haja 2 ou mais arquivos com a mesma data, o primeiro encontrado será copiado.
+                 
+	         Oldest 	Somente o mais antigo é copiado. Caso haja 2 ou mais arquivos com a mesma data, o primeiro encontrado será copiado.
+ 
+RegEx=       Indica a expressão regular a ser usada na seleçao dos arquivos no diretório de origem. Se houver definições para Coringa e expressões 
+             regulares as expessões regulares serão usadas.     
+
+
+comentarios  Para incluir comentários no arquivo de configuraçãop comece a linha com um destes caracteres !#* (exclamação, sustenido ou asterisco),
+e para efeitos práticos esta linha será desconsiderada.
+
+Exemplo:
+
+###### Arquivo de configuraçao -> Azul
+###### Criado em 23/01/2019
+
+Source=/home/carlos/Source
+Destination=/home/carlos/Destination
+WildCard=*.txt
+Lapse=60
+Mode=Name
+RegEx= *[A-Za-z[0-9_].cpp 
+
+##### fim do arquivo
+
+Deve ser dada uma especial atenção ao tipo de letra usada pois o programa diferencia maiúsculas de minusculas. Observe que alguns rótulos começam 
+com letra maiúscula e eles devem ser digitados exatamente como estão indicados acima.
+
+a linha de chamada do programa deve ser:
+ 
+MoveFiles <Enter>
+
+O programa cria um arquivo de log onde são reportados erros e eventos importantes do programa (A terminar)
+
+
+
+
+ 
